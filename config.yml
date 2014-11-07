@@ -1,10 +1,12 @@
-rpart_tree:
+techan:
   jshead:
     - js/d3.v3.min.js
+    - js/techan.min.js
   css:
-    - css/treestyle.css
+    - css/techan.css
   cdn:
     jshead:
       - http://d3js.org/d3.v3.min.js
+      - http://timelyportfolio.github.io/rCharts_techan/js/techan.min.js
     css:
-      - http://timelyportfolio.github.io/rCharts_rpart/css/treestyle.css
+      - http://timelyportfolio.github.io/rCharts_techan/css/techan.css
