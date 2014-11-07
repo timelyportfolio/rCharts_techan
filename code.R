@@ -16,8 +16,8 @@ rChartsTechan <- setRefClass(
       # expect data to be in xts
       # open, high, low, close, volume, adj. close structure
       data = data.frame(
-        Date = index(data)
-        ,data
+        Date = index(params$data)
+        ,params$data
       )
       colnames(data) = c("Date","Open","High","Low","Close","Volume")
       data =  jsonlite::toJSON(
@@ -53,8 +53,8 @@ rChartsTechan <- setRefClass(
 # now make a rChart with our rpart
 
 rT <- rChartsTechan$new()
-#rT$setLib('http://timelyportfolio.github.io/rCharts_techan')
-rT$setLib('.')
+rT$setLib('http://timelyportfolio.github.io/rCharts_techan')
+#rT$setLib('.')
 rT$lib = 'techan'
 rT$LIB$name = 'techan'
 rT$setTemplate(
@@ -106,7 +106,7 @@ rT$setTemplate(
     
       var accessor = candlestick.accessor();
 
-      data = data.slice(data.length - 200).map(function(d) {
+      data = data.map(function(d) {
           return {
               date: parseDate(d.Date),
               open: +d.Open,
@@ -146,13 +146,15 @@ rT$setTemplate(
 
 
 rT$set(
-  data = data#getSymbols(
-    #'SPY'
-    #,auto.assign=F
-  #)
+  data = getSymbols(
+    'SPY'
+    ,from = "2012-12-31"
+    ,auto.assign=F
+  )
 )
-rT$show()
+rT
 
+#rT$publish( "rCharts candlesticks with techan.js" )
 
 
 
